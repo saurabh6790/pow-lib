@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 import webnotes, json
 from webnotes.utils import cint, now, cstr
 from webnotes import _
+#sql = webnotes.conn.sql
 
 class DocType:
 	def __init__(self, doc, doclist):
@@ -53,6 +54,7 @@ class DocType:
 		"""don't allow more than max users if set in conf"""
 		from webnotes import conf
 		# check only when enabling a user
+		webnotes.errprint("profile...")
 		if 'max_users' in conf and self.doc.enabled and \
 				self.doc.name not in ["Administrator", "Guest"] and \
 				cstr(self.doc.user_type).strip() in ("", "System User"):
@@ -96,6 +98,20 @@ class DocType:
 		# owner is always name
 		webnotes.conn.set(self.doc, 'owner', self.doc.name)
 		webnotes.clear_cache(user=self.doc.name)
+
+		self.doc.account_id=self.doc.account_id.lower()		
+		#if self.doc.enabled==0:
+		#	a=webnotes.conn.sql("select accountID from Account where contactEmail='"+cstr(self.doc.email)+"'")
+			#t=webnotes.conn.sql("select contactName from `Account` limit 1")
+		#	webnotes.errprint(a)
+		#	if a:
+		#		res="update Account set (isActive='"+cstr(self.doc.enabled)+"',description='"+cstr(self.doc.account_description)+"',contactName='"+cstr(self.doc.first_name)+"',contactPhone='"+cstr(self.doc.contact_phone)+"',notifyEmail='"+cstr(self.doc.notify_email)+"',speedUnits='"+cstr(self.doc.speed_units)+"',distanceUnits='"+cstr(self.doc.distance_units)+"',volumeUnits='"+cstr(self.doc.volume_units)+"',pressureUnits='"+cstr(self.doc.pressure_units)+"',economyUnits='"+cstr(self.doc.economy_units)+"',temperatureUnits='"+cstr(self.doc.temperature_units)+"',latLonFormat='"+cstr(self.doc.latitude_longitude_format)+"') where contactEmail='"+cstr(self.doc.email)+"'"
+		#		webnotes.errprint(res)
+		#	else:
+		#		qry="insert into Account (isActive,accountID,description,contactName,contactPhone,contactEmail,notifyEmail,speedUnits,distanceUnits,volumeUnits,pressureUnits,economyUnits,temperatureUnits,latLonFormat) values('"+cstr(self.doc.enabled)+"','"+cstr(self.doc.account_id)+"','"+cstr(self.doc.account_description)+"','"+cstr(self.doc.first_name)+"','"+cstr(self.doc.contact_phone)+"','"+cstr(self.doc.email)+"','"+cstr(self.doc.notify_email)+"','"+cstr(self.doc.speed_units)+"','"+cstr(self.doc.distance_units)+"','"+cstr(self.doc.volume_units)+"','"+cstr(self.doc.pressure_units)+"','"+cstr(self.doc.economy_units)+"','"+cstr(self.doc.temperature_units)+"','"+cstr(self.doc.latitude_longitude_format)+"')"
+		#		webnotes.errprint(qry)
+	
+
 	
 	def reset_password(self):
 		from webnotes.utils import random_string, get_url

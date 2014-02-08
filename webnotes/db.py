@@ -75,7 +75,8 @@ class Database:
 		
 		# autocommit
 		if auto_commit: self.commit()
-			
+		#webnotes.errprint(query)
+		#webnotes.errprint(values)
 		# execute
 		try:
 			if values!=():

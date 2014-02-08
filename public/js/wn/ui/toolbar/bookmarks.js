@@ -17,6 +17,16 @@ wn.ui.toolbar.Bookmarks = Class.extend({
 			</ul>\
 		</li>');
 		
+		$('.navbar .nav:first').append('<li class="dropdown">\
+			<a class="dropdown-toggle" id="show_data" data-toggle="dropdown" href="#" \
+				title="'+wn._("Tracking")+'"\
+				onclick="this.show_data()">'+wn._("Tracking")+'</a>\
+		</li>');
+		$('.navbar .nav:first').append('<li class="dropdown">\
+			<a class="dropdown-toggle" id="show_geo_zone" data-toggle="dropdown" href="#" \
+				title="'+wn._("GEO Zone")+'"\
+				onclick="this.show_geo_zone()">'+wn._("GEO Zone")+'</a>\
+		</li>');
 		
 		this.setup();
 	},
