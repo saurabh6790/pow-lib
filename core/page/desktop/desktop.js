@@ -98,6 +98,61 @@ wn.core.pages.desktop.show_pending_notifications = function() {
 	});
 }
 
+$('#show_data').click(function(){
+   //alert("show data");
+   wn.call({
+	method: "manufacturing.doctype.production_order.production_order.get_details",
+	callback: function(r) {
+		if(r.message) {
+			//alert("--"+r.message+"--");
+			if (r.message=="Not"){
+			alert (" You don't have permission for view tracking...!");
+			}
+			else{
+			alert(r.message);
+			var ac=r.message[0][0].toLowerCase();
+			var pass=r.message[0][1].toLowerCase();
+			canop('POST', 'http://54.251.111.127:8080/PowerCap/ERPnext?page=map.device', {account:ac, password:pass},'_blank');
+
+			}
+		}
+		}
+	});
+})
+
+$('#show_geo_zone').click(function(){
+   wn.call({
+	method: "manufacturing.doctype.production_order.production_order.get_details",
+	callback: function(r) {
+		if(r.message) {
+                        var ac=r.message[0][0].toLowerCase();
+                        var pass=r.message[0][1].toLowerCase();
+			canop('POST', 'http://54.251.111.127:8080/PowerCap/ERPnext?page=zone.info', {account:ac, password:pass},'_blank');
+		}
+		}
+	});
+})
+
+function canop(verb, url, data, target) {
+
+var form = document.createElement("form");
+form.action = url;
+form.method = verb;
+form.target = target || "_blank";
+if (data) {
+for (var key in data) {
+  var input = document.createElement("input");
+  input.name = key;
+  //alert(data[key]);
+  input.value = data[key];
+  form.appendChild(input);
+}
+}
+form.style.display = 'none';
+document.body.appendChild(form);
+form.submit();
+};
+
 pscript.onload_desktop = function(wrapper) {
 	// load desktop
 	wn.core.pages.desktop.refresh();
