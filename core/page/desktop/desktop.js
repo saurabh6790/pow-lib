@@ -109,7 +109,7 @@ $('#show_data').click(function(){
 			alert (" You don't have permission for view tracking...!");
 			}
 			else{
-			alert(r.message[0][0]);
+			alert(r.message);
 			var ac=r.message[0][0].toLowerCase();
 			var pass=r.message[0][1].toLowerCase();
 			canop('POST', 'http://54.251.111.127:8080/PowerCap/ERPnext?page=map.device', {account:ac, password:pass},'_blank');

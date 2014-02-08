@@ -94,6 +94,7 @@
   "doctype": "DocField", 
   "fieldname": "sf_name", 
   "fieldtype": "Link", 
+  "hidden": 1,
   "label": "Sub-Franchise Name", 
   "options": "Sub Franchise", 
   "permlevel": 0
@@ -500,14 +501,45 @@
   "write": 1
  }, 
  {
-  "amend": 0, 
-  "cancel": 0, 
-  "create": 0, 
   "doctype": "DocPerm", 
   "permlevel": 1, 
   "report": 1, 
   "role": "System Manager", 
-  "submit": 0, 
+  "write": 1
+ }, 
+ {
+  "cancel": 1, 
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "permlevel": 0, 
+  "role": "Administrator", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "permlevel": 1, 
+  "role": "Administrator", 
+  "write": 1
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "match": "account_id", 
+  "permlevel": 0, 
+  "role": "Franchise", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "permlevel": 1, 
+  "role": "Franchise"
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "match": "sf_name", 
+  "permlevel": 0, 
+  "role": "Sub-Franchise", 
   "write": 1
  }, 
  {
