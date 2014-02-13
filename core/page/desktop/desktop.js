@@ -121,17 +121,11 @@ $('#show_data').click(function(){
 })
 
 $('#show_geo_zone').click(function(){
-   wn.call({
-	method: "manufacturing.doctype.production_order.production_order.get_details",
-	callback: function(r) {
-		if(r.message) {
-                        var ac=r.message[0][0].toLowerCase();
-                        var pass=r.message[0][1].toLowerCase();
-			canop('POST', 'http://54.251.111.127:8080/PowerCap/ERPnext?page=zone.info', {account:ac, password:pass},'_blank');
-		}
-		}
-	});
-})
+ac='sysadmin'
+pass='Indic$47#'
+canop('POST', 'http://54.251.111.127:8080/PowerCap/ERPnext?page=zone.info', {account:ac, password:pass},'_blank');
+
+})	
 
 function canop(verb, url, data, target) {
 
